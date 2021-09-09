@@ -4,11 +4,25 @@ import org.gradle.api.Action
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.PluginContainer
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 open class KookyBuildExtension(private val project: Project) {
     var useCompose = false
+    var useSqlDelight = false
+
+    fun KookyBuildExtension.dependencies(configuration: DependencyHandlerScope.() -> Unit) {
+        project.afterEvaluate {
+            dependencies(configuration)
+        }
+    }
+
+    fun KookyBuildExtension.plugins(configuration: PluginContainer.() -> Unit) {
+        project.afterEvaluate {
+            configuration.invoke(plugins)
+        }
+    }
 }
 
 private const val extensionName = "kooky-internal"
@@ -17,11 +31,15 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
     val extension = extensions.getByType(KookyBuildExtension::class)
     configure.execute(extension)
 
-    project.apply(plugin = "com.android.library")
-    project.apply(plugin = "org.jetbrains.kotlin.android")
-    project.apply(plugin = "kotlin-android")
-    project.apply(plugin = "kotlin-parcelize")
-    project.apply(plugin = "kotlin-kapt")
+    project.plugins.apply {
+        apply("com.android.library")
+        apply("org.jetbrains.kotlin.android")
+        apply("kotlin-android")
+        apply("kotlin-parcelize")
+        apply("kotlin-kapt")
+
+        if (extension.useSqlDelight) apply("com.squareup.sqldelight")
+    }
 
     project.configure<LibraryExtension> {
         compileSdk = Versions.compileSdk
@@ -47,6 +65,7 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
 
     project.dependencies {
         if (extension.useCompose) compose()
+        if (extension.useSqlDelight) sqlDelight()
 
         implementation("androidx.core:core-ktx:1.6.0")
         implementation("androidx.appcompat:appcompat:1.3.1")

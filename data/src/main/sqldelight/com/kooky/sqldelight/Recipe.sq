@@ -1,0 +1,24 @@
+CREATE TABLE recipe (
+    id INTEGER NOT NULL UNIQUE PRIMARY KEY,
+    name TEXT NOT NULL,
+    method TEXT NOT NULL
+);
+
+selectAll:
+SELECT * FROM recipe ORDER BY name;
+
+insertOrReplace:
+INSERT OR REPLACE INTO recipe(
+  name,
+  method
+)
+VALUES (?, ?);
+
+selectByName:
+SELECT * FROM recipe WHERE name = ?;
+
+empty:
+DELETE FROM recipe;
+
+delete:
+DELETE FROM recipe WHERE id = ?;

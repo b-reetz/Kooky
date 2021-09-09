@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 rootProject.name = "Kooky"
 include ':app'
 include ':feature:recipe'
+include ':data'
