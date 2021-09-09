@@ -10,3 +10,8 @@ buildscript {
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.38.1")
     }
 }
+
+subprojects {
+    if (projectDir.path != "$rootDir/app")
+        plugins.apply(KookyBuildPlugin::class)
+}
