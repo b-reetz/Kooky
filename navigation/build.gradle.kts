@@ -1,0 +1,5 @@
+kooky {
+    dependencies {
+        enro()
+    }
+}

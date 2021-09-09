@@ -59,6 +59,11 @@ fun DependencyHandlerScope.sqlDelight() {
     implementation("com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}")
 }
 
+fun DependencyHandlerScope.enro() {
+    implementation("dev.enro:enro:${Versions.enro}")
+    kapt("dev.enro:enro-processor:${Versions.enro}")
+}
+
 fun DependencyHandlerScope.navigation() {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha01")
 }

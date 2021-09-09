@@ -4,6 +4,8 @@ kooky {
     useCompose = true
 
     dependencies {
+        enro()
         implementation(project(":data"))
+        implementation(project(":navigation"))
     }
 }

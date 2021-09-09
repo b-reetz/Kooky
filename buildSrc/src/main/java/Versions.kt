@@ -37,7 +37,10 @@ object Versions {
     const val okHttp = "4.9.0"
 
     //database
-    const val sqlDelight = "1.5.1" //TODO should we update?
+    const val sqlDelight = "1.5.1"
+
+    //enro
+    const val enro = "1.4.0-beta03"
 
     //test
     const val testCore = "1.4.0"

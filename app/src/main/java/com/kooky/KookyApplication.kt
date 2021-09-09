@@ -2,6 +2,12 @@ package com.kooky
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
+import dev.enro.annotations.NavigationComponent
+import dev.enro.core.controller.NavigationApplication
+import dev.enro.core.controller.navigationController
 
 @HiltAndroidApp
-class KookyApplication : Application()
+@NavigationComponent
+class KookyApplication : Application(), NavigationApplication {
+    override val navigationController = navigationController()
+}
