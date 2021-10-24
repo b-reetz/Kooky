@@ -8,11 +8,13 @@ import org.gradle.api.plugins.PluginContainer
 import org.gradle.kotlin.dsl.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+@Suppress("unused")
 open class KookyBuildExtension(private val project: Project) {
     var useCompose = false
     var useSqlDelight = false
 
     fun KookyBuildExtension.dependencies(configuration: DependencyHandlerScope.() -> Unit) {
+        //Needs the plugins applied first before we can use configuration names like 'implementation'
         project.afterEvaluate {
             dependencies(configuration)
         }
@@ -31,7 +33,7 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
     val extension = extensions.getByType(KookyBuildExtension::class)
     configure.execute(extension)
 
-    project.plugins.apply {
+    plugins.apply {
         apply("com.android.library")
         apply("org.jetbrains.kotlin.android")
         apply("kotlin-android")
@@ -41,7 +43,7 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
         if (extension.useSqlDelight) apply("com.squareup.sqldelight")
     }
 
-    project.configure<LibraryExtension> {
+    configure<LibraryExtension> {
         compileSdk = Versions.compileSdk
         defaultConfig {
             minSdk = Versions.minSdk
@@ -59,11 +61,11 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
         composeOptions { kotlinCompilerExtensionVersion = Versions.compose }
     }
 
-    project.tasks.withType<KotlinCompile>().configureEach {
+    tasks.withType<KotlinCompile>().configureEach {
         kotlinOptions { jvmTarget = "1.8" }
     }
 
-    project.dependencies {
+    dependencies {
         if (extension.useCompose) compose()
         if (extension.useSqlDelight) sqlDelight()
 

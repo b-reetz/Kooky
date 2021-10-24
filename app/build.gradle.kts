@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
 }
@@ -31,7 +32,7 @@ android {
     }
     kotlinOptions { jvmTarget = "1.8" }
     buildFeatures { compose = true }
-    composeOptions { kotlinCompilerExtensionVersion = "1.0.1" }
+    composeOptions { kotlinCompilerExtensionVersion = Versions.compose }
     packagingOptions {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")

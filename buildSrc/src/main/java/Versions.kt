@@ -6,11 +6,11 @@ object Versions {
     const val versionCode = 0
 
     //compose
-    const val compose = "1.0.1"
+    const val compose = "1.0.4"
     const val composeActivity = "1.3.0"
     const val composeViewModel = "1.0.0-alpha07"
 
-    const val kotlin = "1.5.10"
+    const val kotlin = "1.5.31"
     const val hilt = "2.38.1"
     const val dagger = "2.36"
 
@@ -40,7 +40,7 @@ object Versions {
     const val sqlDelight = "1.5.1"
 
     //enro
-    const val enro = "1.4.0-beta03"
+    const val enro = "1.4.0-beta04"
 
     //test
     const val testCore = "1.4.0"
@@ -48,5 +48,5 @@ object Versions {
     const val junit = "4.13.2"
     const val espresso = "3.4.0"
     const val robolectric = "4.5.1"
-    const val mockitoKotlin = "3.2.0"
+    const val mockitoKotlin = "4.0.0"
 }
