@@ -1,9 +1,14 @@
 package com.kooky.feature.recipe
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class IngredientsRepository {
+class IngredientsRepository @Inject constructor() {
     fun getIngredients(): Flow<List<String>> {
-        TODO()
+        return flow {  }
+    }
+
+    fun saveIngredients(ingredientList: List<String>) {
     }
 }

@@ -7,4 +7,6 @@ class IngredientsInteractor @Inject constructor(
 ) {
     //TODO map ingredient object to what is required by view model
     fun getAllIngredientNames() = repository.getIngredients()
+
+    fun saveIngredients(ingredientList: List<String>) = repository.saveIngredients(ingredientList)
 }

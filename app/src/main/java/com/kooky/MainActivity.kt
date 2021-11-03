@@ -8,15 +8,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import com.kooky.feature.recipe.IngredientAdd
 import com.kooky.feature.recipe.IngredientAddKey
 import com.kooky.navigation.RecipeListKey
 import com.kooky.navigation.toolbarActions
 import com.kooky.navigation.toolbarTitle
+import dagger.hilt.android.AndroidEntryPoint
 import dev.enro.core.NavigationInstruction
 import dev.enro.core.compose.EmptyBehavior
 import dev.enro.core.compose.EnroContainer
 import dev.enro.core.compose.rememberEnroContainerController
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
