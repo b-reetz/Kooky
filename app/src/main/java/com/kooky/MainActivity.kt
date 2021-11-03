@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import com.kooky.feature.recipe.IngredientAddKey
 import com.kooky.navigation.RecipeListKey
 import com.kooky.navigation.toolbarActions
 import com.kooky.navigation.toolbarTitle
@@ -35,7 +36,7 @@ fun MainContent() {
             )
         }) {
             val controller = rememberEnroContainerController(
-                initialState = listOf(NavigationInstruction.Forward(RecipeListKey())),
+                initialState = listOf(NavigationInstruction.Forward(IngredientAddKey())),
                 emptyBehavior = EmptyBehavior.CloseParent
             )
             EnroContainer(controller = controller)

@@ -14,10 +14,6 @@ fun DependencyHandler.kotlinxSerialization() {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
 }
 
-fun DependencyHandler.materialDesign() {
-    implementation("com.google.android.material:material:${Versions.materialDesign}")
-}
-
 fun DependencyHandler.coroutines() {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
 }
@@ -45,7 +41,7 @@ fun DependencyHandlerScope.hilt() {
 fun DependencyHandler.compose() {
     implementation("androidx.compose.runtime:runtime:${Versions.compose}")
     implementation("androidx.compose.ui:ui:${Versions.compose}")
-    implementation("androidx.compose.material:material:${Versions.compose}")
+    implementation("androidx.compose.material:material:1.1.0-alpha06")
     implementation("androidx.compose.foundation:foundation:${Versions.compose}")
     implementation("androidx.compose.animation:animation:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
