@@ -41,13 +41,14 @@ fun DependencyHandlerScope.hilt() {
 fun DependencyHandler.compose() {
     implementation("androidx.compose.runtime:runtime:${Versions.compose}")
     implementation("androidx.compose.ui:ui:${Versions.compose}")
-    implementation("androidx.compose.material:material:1.1.0-alpha06")
+    implementation("androidx.compose.material:material:${Versions.compose}")
     implementation("androidx.compose.foundation:foundation:${Versions.compose}")
     implementation("androidx.compose.animation:animation:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
     implementation("androidx.activity:activity-compose:${Versions.composeActivity}")
     implementation("androidx.navigation:navigation-compose:2.4.0-alpha07")
-//    implementation("dev.chrisbanes.accompanist:accompanist-coil:0.6.2")
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}")
 }
 
 fun DependencyHandlerScope.sqlDelight() {
@@ -58,8 +59,4 @@ fun DependencyHandlerScope.sqlDelight() {
 fun DependencyHandlerScope.enro() {
     implementation("dev.enro:enro:${Versions.enro}")
     kapt("dev.enro:enro-processor:${Versions.enro}")
-}
-
-fun DependencyHandlerScope.navigation() {
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0-alpha01")
 }

@@ -47,7 +47,7 @@ fun RecipeList() { //wrap in scaffold with top app bar
     }
 
     val recipes = (1..20).map {
-        Triple("My name", "30 - 40 minutes", "6 servings")
+        Triple("My name", "30 - 40 minutes", "$it servings")
     }
 
     LazyColumn(
@@ -55,10 +55,10 @@ fun RecipeList() { //wrap in scaffold with top app bar
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 //        item { Spacer(Modifier) }
-        items(recipes) {
+        items(recipes, key = { it.third }) {
             Box(modifier = Modifier
                 .padding(horizontal = 16.dp)
-                .clickable { navigation.forward(RecipeAddKey()) }
+                .clickable { navigation.forward(IngredientAddKey()) }
             ) {
                 Image(
                     bitmap = ImageBitmap.imageResource(id = R.drawable.eggplant_recipe),

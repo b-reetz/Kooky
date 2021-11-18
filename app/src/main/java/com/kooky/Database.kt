@@ -1,6 +1,7 @@
-package com.kooky.data
+package com.kooky
 
 import android.app.Application
+import com.kooky.data.Database
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import dagger.Module
 import dagger.Provides
@@ -14,7 +15,11 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabaseModule(context: Application): Database {
-        val sqlDriver = AndroidSqliteDriver(Database.Schema, context, "test.db")
+        val sqlDriver = AndroidSqliteDriver(Database.Schema, context, null)
         return Database(sqlDriver)
     }
+
+    @Singleton
+    @Provides
+    fun provideIngredientQueries(database: Database) = database.ingredientQueries
 }

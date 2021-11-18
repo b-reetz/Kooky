@@ -1,0 +1,22 @@
+CREATE TABLE ingredient (
+    id INTEGER DEFAULT 1,
+    name TEXT NOT NULL UNIQUE PRIMARY KEY
+);
+
+selectAll:
+SELECT * FROM ingredient ORDER BY name;
+
+insertOrReplace:
+INSERT OR IGNORE INTO ingredient(name) VALUES (?);
+
+selectByName:
+SELECT * FROM ingredient WHERE name = ?;
+
+empty:
+DELETE FROM ingredient;
+
+-- deleteById:
+-- DELETE FROM ingredient WHERE id = ?;
+
+deleteByName:
+DELETE FROM ingredient WHERE name = ?;

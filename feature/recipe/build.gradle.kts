@@ -6,6 +6,8 @@ kooky {
     dependencies {
         hilt()
         enro()
+        sqlDelight()
+
         implementation(project(":data"))
         implementation(project(":navigation"))
     }

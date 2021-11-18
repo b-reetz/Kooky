@@ -1,6 +1,7 @@
 package com.kooky.feature.recipe
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 
 abstract class StateViewModel<State : Any>(initialState: State) : ViewModel() {
@@ -18,7 +19,7 @@ abstract class StateViewModel<State : Any>(initialState: State) : ViewModel() {
         state = block(state)
     }
 
-    protected fun <T> Flow<T>.onEachUpdateState(block: State.(T) -> State): Flow<T> {
-        return onEach { updateState { block(it) } }
+    protected fun <T> Flow<T>.onEachUpdateState(block: State.(T) -> State) {
+        onEach { updateState { block(it) } }.launchIn(viewModelScope)
     }
 }

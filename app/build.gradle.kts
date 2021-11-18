@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    id("com.squareup.sqldelight")
 }
 
 android {
@@ -44,8 +45,10 @@ dependencies {
     compose()
     hilt()
     enro()
+    sqlDelight()
 
     implementation(project(":feature:recipe"))
+    implementation(project(":data"))
     implementation(project(":navigation"))
 
     implementation("androidx.appcompat:appcompat:1.3.1")
