@@ -1,5 +1,6 @@
 package com.kooky.feature.recipe
 
+import android.util.Log
 import android.widget.TextView
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -72,10 +73,12 @@ class AddIngredientsViewModel @Inject constructor(
     }
 
     init {
-        //TODO should this launch in scope here, or in StateViewModel
-            interactor.getAllIngredientNames()
-                .onEachUpdateState { copy(existingIngredients = it) }
-//        }
+        interactor.getAllIngredientNames()
+            .onEachUpdateState {
+                Log.d("INGREDIENTS", "$it")
+                copy(existingIngredients = it)
+            }
+            .launchIn(viewModelScope)
     }
 }
 

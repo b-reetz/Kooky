@@ -6,35 +6,28 @@ object Versions {
     const val versionCode = 0
 
     //compose
-    const val compose = "1.1.0-beta03"
+    const val compose = "1.1.0-beta04"
     const val composeActivity = "1.4.0"
     const val composeViewModel = "2.4.0"
 
-    const val kotlin = "1.5.31"
+    const val kotlin = "1.6.0"
     const val hilt = "2.40.1"
-    const val dagger = "2.36"
 
-    const val hiltAndroidExt = "1.0.0"
-    const val kotlinCoroutines = "1.4.2"
+    const val kotlinCoroutines = "1.5.2"
 
-    const val kotlinxSerialization = "1.2.2"
-    const val kotlinxSerializationConverter = "0.6.0"
+    const val kotlinxSerialization = "1.3.1"
 
     const val appCompat = "1.4.0"
     const val material = "1.4.0"
 
-    const val materialDesign = "1.4.0"
-
-    const val coreKtx = "1.6.0"
-    const val activityKtx = "1.2.3"
-    const val fragmentKtx = "1.3.5"
+    const val coreKtx = "1.7.0"
 
     //logging
     const val timber = "4.7.1"
 
     //network
     const val retrofit = "2.9.0"
-    const val okHttp = "4.9.0"
+    const val okHttp = "4.9.3"
 
     //database
     const val sqlDelight = "1.5.2"

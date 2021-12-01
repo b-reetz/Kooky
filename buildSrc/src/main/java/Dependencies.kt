@@ -5,10 +5,6 @@ import com.kooky.buildextensions.kapt
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
 
-fun DependencyHandler.kotlinxSerializationConverter() {
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.kotlinxSerializationConverter}")
-}
-
 fun DependencyHandler.kotlinxSerialization() {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.kotlinxSerialization}")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")

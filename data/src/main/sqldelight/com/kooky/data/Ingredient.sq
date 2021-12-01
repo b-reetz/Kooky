@@ -10,7 +10,7 @@ insertOrReplace:
 INSERT OR IGNORE INTO ingredient(name) VALUES (?);
 
 selectByName:
-SELECT * FROM ingredient WHERE name = ?;
+SELECT * FROM ingredient WHERE name = ? LIMIT :limit;
 
 empty:
 DELETE FROM ingredient;

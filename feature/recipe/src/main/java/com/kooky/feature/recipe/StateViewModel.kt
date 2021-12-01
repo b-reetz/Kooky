@@ -19,7 +19,7 @@ abstract class StateViewModel<State : Any>(initialState: State) : ViewModel() {
         state = block(state)
     }
 
-    protected fun <T> Flow<T>.onEachUpdateState(block: State.(T) -> State) {
-        onEach { updateState { block(it) } }.launchIn(viewModelScope)
+    protected fun <T> Flow<T>.onEachUpdateState(block: State.(T) -> State): Flow<T> {
+        return onEach { updateState { block(it) } }
     }
 }

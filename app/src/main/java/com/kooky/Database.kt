@@ -15,7 +15,7 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDatabaseModule(context: Application): Database {
-        val sqlDriver = AndroidSqliteDriver(Database.Schema, context, null)
+        val sqlDriver = AndroidSqliteDriver(Database.Schema, context, "temp.db")
         return Database(sqlDriver)
     }
 

@@ -69,9 +69,9 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
         if (extension.useCompose) compose()
         if (extension.useSqlDelight) sqlDelight()
 
-        implementation("androidx.core:core-ktx:1.7.0")
-        implementation("androidx.appcompat:appcompat:1.4.0")
-        implementation("com.google.android.material:material:1.4.0")
+        implementation("androidx.core:core-ktx:${Versions.coreKtx}")
+        implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
+        implementation("com.google.android.material:material:${Versions.material}")
     }
 }
 

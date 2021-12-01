@@ -6,30 +6,28 @@ import com.kooky.data.IngredientQueries
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 class IngredientsRepository @Inject constructor(
     private val ingredients: IngredientQueries
 ) {
-    init {
-        ingredients.empty()
-    }
 
-    fun getIngredients(): Flow<List<Ingredient>> {
+    fun getAllIngredients(): Flow<List<Ingredient>> {
         return ingredients.selectAll()
             .asFlow()
             .mapToList()
-            .onEach {
-                Log.d("Ingredients", "$it")
-            }
+    }
+
+    fun getIngredients(filterString: String = "", limit: Int = 0): Flow<List<Ingredient>> {
+        return ingredients.selectByName(filterString, limit.toLong())
+            .asFlow()
+            .mapToList()
     }
 
     fun saveIngredients(ingredientList: List<String>) {
-        ingredients.transaction {
-            ingredientList.forEach {
-                ingredients.insertOrReplace(it)
-            }
+        Log.d("INGREDIENTS", "Saving $ingredientList")
+        ingredientList.forEach {
+            ingredients.insertOrReplace(it)
         }
     }
 }
