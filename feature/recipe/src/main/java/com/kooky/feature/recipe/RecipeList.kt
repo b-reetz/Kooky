@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kooky.navigation.LocalToolbar
 import com.kooky.navigation.RecipeListKey
 import com.kooky.navigation.ToolbarProps
@@ -50,6 +51,8 @@ fun RecipeList() { //wrap in scaffold with top app bar
         Triple("My name", "30 - 40 minutes", "$it servings")
     }
 
+    val vm = viewModel<RecipeListViewModel>()
+
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -58,7 +61,10 @@ fun RecipeList() { //wrap in scaffold with top app bar
         items(recipes, key = { it.third }) {
             Box(modifier = Modifier
                 .padding(horizontal = 16.dp)
-                .clickable { navigation.forward(IngredientAddKey()) }
+                .clickable {
+                    vm.importFromUrlSelected()
+//                    navigation.forward(IngredientAddKey())
+                }
             ) {
                 Image(
                     bitmap = ImageBitmap.imageResource(id = R.drawable.eggplant_recipe),

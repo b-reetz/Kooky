@@ -7,8 +7,12 @@ kooky {
         hilt()
         enro()
         sqlDelight()
+        retrofit()
+        okHttp()
+        kotlinxSerialization()
 
         implementation(project(":data"))
         implementation(project(":navigation"))
+        implementation("it.skrape:skrapeit:1.1.6")
     }
 }

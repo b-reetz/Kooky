@@ -39,6 +39,7 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
         apply("kotlin-android")
         apply("kotlin-parcelize")
         apply("kotlin-kapt")
+        apply("kotlinx-serialization")
 
         if (extension.useSqlDelight) apply("com.squareup.sqldelight")
     }
@@ -59,6 +60,13 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
 
         buildFeatures { compose = extension.useCompose }
         composeOptions { kotlinCompilerExtensionVersion = Versions.compose }
+
+        packagingOptions {
+            resources {
+                excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+                excludes.add("/META-INF/DEPENDENCIES")
+            }
+        }
     }
 
     tasks.withType<KotlinCompile>().configureEach {
@@ -68,6 +76,8 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
     dependencies {
         if (extension.useCompose) compose()
         if (extension.useSqlDelight) sqlDelight()
+
+        timber()
 
         implementation("androidx.core:core-ktx:${Versions.coreKtx}")
         implementation("androidx.appcompat:appcompat:${Versions.appCompat}")

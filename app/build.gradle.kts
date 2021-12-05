@@ -1,3 +1,5 @@
+import com.kooky.buildextensions.implementation
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -37,6 +39,7 @@ android {
     packagingOptions {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            excludes.add("/META-INF/DEPENDENCIES")
         }
     }
 }
@@ -46,12 +49,13 @@ dependencies {
     hilt()
     enro()
     sqlDelight()
+    timber()
 
     implementation(project(":feature:recipe"))
     implementation(project(":data"))
     implementation(project(":navigation"))
 
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("androidx.appcompat:appcompat:1.4.0")
+    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.activity:activity-compose:1.4.0")
 }

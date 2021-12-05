@@ -56,3 +56,7 @@ fun DependencyHandlerScope.enro() {
     implementation("dev.enro:enro:${Versions.enro}")
     kapt("dev.enro:enro-processor:${Versions.enro}")
 }
+
+fun DependencyHandlerScope.timber() {
+    implementation("com.jakewharton.timber:timber:${Versions.timber}")
+}
