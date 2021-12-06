@@ -8,8 +8,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.core.view.WindowCompat
 import com.kooky.feature.recipe.IngredientAdd
 import com.kooky.feature.recipe.IngredientAddKey
+import com.kooky.feature.recipe.RecipeDetailKey
 import com.kooky.navigation.RecipeListKey
 import com.kooky.navigation.toolbarActions
 import com.kooky.navigation.toolbarTitle
@@ -23,6 +25,8 @@ import dev.enro.core.compose.rememberEnroContainerController
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
             MainContent()
         }
@@ -33,13 +37,13 @@ class MainActivity : AppCompatActivity() {
 fun MainContent() {
     MaterialTheme {
         Scaffold(topBar = {
-            TopAppBar(
-                title = { Text(toolbarTitle) },
-                actions = toolbarActions //FIXME why does this have the wrong content colour?
-            )
+//            TopAppBar(
+//                title = { Text(toolbarTitle) },
+//                actions = toolbarActions //FIXME why does this have the wrong content colour?
+//            )
         }) {
             val controller = rememberEnroContainerController(
-                initialBackstack = listOf(NavigationInstruction.Forward(RecipeListKey())),
+                initialBackstack = listOf(NavigationInstruction.Forward(RecipeDetailKey())),
                 emptyBehavior = EmptyBehavior.CloseParent
             )
             EnroContainer(controller = controller)
