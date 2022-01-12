@@ -14,5 +14,6 @@ kooky {
         implementation(project(":data"))
         implementation(project(":navigation"))
         implementation("it.skrape:skrapeit:1.1.6")
+        implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
     }
 }

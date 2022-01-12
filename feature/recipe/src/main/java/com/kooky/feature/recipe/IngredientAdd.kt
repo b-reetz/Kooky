@@ -1,5 +1,6 @@
 package com.kooky.feature.recipe
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -9,11 +10,11 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.PopupProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kooky.navigation.LocalToolbar
 import com.kooky.navigation.ToolbarProps
@@ -25,7 +26,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class IngredientAddKey : NavigationKey
 
-@OptIn(ExperimentalMaterialApi::class, androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
 @ExperimentalComposableDestination
 @NavigationDestination(IngredientAddKey::class)
@@ -47,6 +47,7 @@ fun IngredientAdd() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color.White)
             .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

@@ -58,4 +58,5 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.core:core-ktx:1.7.0")
     implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
 }

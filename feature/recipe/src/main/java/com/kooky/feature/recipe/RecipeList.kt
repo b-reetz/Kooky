@@ -16,6 +16,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.insets.LocalWindowInsets
+import com.google.accompanist.insets.navigationBarsPadding
 import com.kooky.navigation.LocalToolbar
 import com.kooky.navigation.RecipeListKey
 import com.kooky.navigation.ToolbarProps
@@ -28,7 +30,12 @@ import dev.enro.core.forward
 @ExperimentalComposableDestination
 @NavigationDestination(RecipeListKey::class)
 fun RecipeList() { //wrap in scaffold with top app bar
+//    RecipeAddIngredients()
+    RecipeAdd()
+}
 
+@Composable
+fun Temp() {
     val navigation = navigationHandle()
     var dropdownVisible by remember { mutableStateOf(false) }
 
@@ -53,31 +60,45 @@ fun RecipeList() { //wrap in scaffold with top app bar
 
     val vm = viewModel<RecipeListViewModel>()
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-//        item { Spacer(Modifier) }
-        items(recipes, key = { it.third }) {
-            Box(modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .clickable {
-                    vm.importFromUrlSelected()
-//                    navigation.forward(IngredientAddKey())
-                }
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                modifier = Modifier.navigationBarsPadding(),
+                onClick = { /*TODO*/ }
             ) {
-                Image(
-                    bitmap = ImageBitmap.imageResource(id = R.drawable.eggplant_recipe),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(),
-                    contentScale = ContentScale.FillWidth
-                )
-                Column(modifier = Modifier.align(Alignment.BottomStart)) {
-                    Text(it.first)
-                    Text(it.second)
+                Icon(imageVector = Icons.Default.Add, null)
+            }
+        },
+        modifier = Modifier.fillMaxSize()
+    ) {
+
+        val insets = LocalWindowInsets.current
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+//        item { Spacer(Modifier) }
+            items(recipes, key = { it.third }) {
+                Box(modifier = Modifier
+                    .padding(horizontal = 16.dp)
+                    .clickable {
+                        vm.importFromUrlSelected()
+                        navigation.forward(IngredientAddKey())
+                    }
+                ) {
+                    Image(
+                        bitmap = ImageBitmap.imageResource(id = R.drawable.eggplant_recipe),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxWidth(),
+                        contentScale = ContentScale.FillWidth
+                    )
+                    Column(modifier = Modifier.align(Alignment.BottomStart)) {
+                        Text(it.first)
+                        Text(it.second)
+                    }
                 }
             }
+            item { Spacer(Modifier) }
         }
-        item { Spacer(Modifier) }
     }
 }
