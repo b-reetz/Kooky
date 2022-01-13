@@ -53,8 +53,8 @@ fun RecipeAdd() {
         var second by remember { mutableStateOf("") }
         var third by remember { mutableStateOf("") }
 
-        RecipeComponentCard(title = "Ingredients", onClick = {navigation.forward(IngredientAddKey())})
-        RecipeComponentCard(title = "Directions", onClick = {navigation.forward(IngredientAddKey())})
+        RecipeComponentCard(title = "Ingredients", onClick = { navigation.forward(NewIngredientAddKey()) })
+        RecipeComponentCard(title = "Directions", onClick = { navigation.forward(IngredientAddKey()) })
 
 //        BasicTextField(value = first, onValueChange = { first = it })
         TextField(
