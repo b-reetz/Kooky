@@ -9,5 +9,8 @@ dependencyResolutionManagement {
 rootProject.name = "Kooky"
 include ':app'
 include ':feature:recipe'
+include ':feature:add'
 include ':data'
 include ':navigation'
+include ':utilities'
+include ':infrastructure:viewmodel'

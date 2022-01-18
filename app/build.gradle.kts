@@ -52,6 +52,7 @@ dependencies {
     timber()
 
     implementation(project(":feature:recipe"))
+    implementation(project(":feature:add"))
     implementation(project(":data"))
     implementation(project(":navigation"))
 

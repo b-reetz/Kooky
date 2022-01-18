@@ -1,0 +1,3 @@
+kooky {
+    useCompose = true
+}

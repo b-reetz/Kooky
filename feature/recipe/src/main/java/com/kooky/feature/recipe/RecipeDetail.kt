@@ -63,6 +63,4 @@ fun RecipeDetailScreen() {
             }
         }
     }
-
-
 }

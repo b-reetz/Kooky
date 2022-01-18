@@ -1,7 +1,6 @@
-package com.kooky.feature.recipe
+package com.kooky.infrastructure.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 
 abstract class StateViewModel<State : Any>(initialState: State) : ViewModel() {

@@ -1,4 +1,4 @@
-package com.kooky.feature.recipe.add
+package com.kooky.feature.add
 
 import javax.inject.Inject
 

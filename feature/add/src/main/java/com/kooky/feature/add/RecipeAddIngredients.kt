@@ -4,7 +4,7 @@
     ExperimentalMaterialApi::class
 )
 
-package com.kooky.feature.recipe
+package com.kooky.feature.add
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.MutableTransitionState
@@ -31,6 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kooky.utilities.maxSize
+import com.kooky.utilities.maxWidth
 import dev.enro.annotations.ExperimentalComposableDestination
 import dev.enro.annotations.NavigationDestination
 import dev.enro.core.NavigationKey
@@ -60,15 +62,15 @@ private fun IngredientTitles() {
         modifier = maxWidth.padding(horizontal = 16.dp),
         horizontalArrangement = spacedBy(8.dp)
     ) {
-        Text("Ingredient", modifier = Mod.weight(2f))
-        Text("Qty", modifier = Mod.weight(1f))
-        Text("Unit", modifier = Mod.weight(1f))
+        Text("Ingredient", modifier = Modifier.weight(2f))
+        Text("Qty", modifier = Modifier.weight(1f))
+        Text("Unit", modifier = Modifier.weight(1f))
     }
 }
 
 @Composable
 private fun IngredientsList() {
-    val viewModel: AddMyIngredientsViewModel = viewModel()
+    val viewModel: AddIngredientsViewModel = viewModel()
     val state by viewModel.stateFlow.collectAsState()
 
     LazyColumn(modifier = maxWidth) {
@@ -155,14 +157,14 @@ private fun IngredientRow(
             OutlinedTextField(
                 value = name.orEmpty(),
                 onValueChange = { onUpdated(ingredient.copy(name = it)) },
-                modifier = Mod.weight(2f)
+                modifier = Modifier.weight(2f)
             )
             OutlinedTextField(
                 value = quantity.orEmpty(),
                 onValueChange = { onUpdated(ingredient.copy(quantity = it)) },
-                modifier = Mod.weight(1f)
+                modifier = Modifier.weight(1f)
             )
-            MeasureSelector(measure, Mod.weight(1f)) { onUpdated(ingredient.copy(measure = it)) }
+            MeasureSelector(measure, Modifier.weight(1f)) { onUpdated(ingredient.copy(measure = it)) }
         }
     }
 }

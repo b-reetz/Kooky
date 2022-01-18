@@ -1,4 +1,4 @@
-package com.kooky.feature.recipe
+package com.kooky.utilities
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize

@@ -1,4 +1,4 @@
-package com.kooky.feature.recipe.add
+package com.kooky.feature.add
 
 import it.skrape.core.htmlDocument
 import it.skrape.fetcher.HttpFetcher

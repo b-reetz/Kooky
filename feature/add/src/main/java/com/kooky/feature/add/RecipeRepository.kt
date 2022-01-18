@@ -1,4 +1,4 @@
-package com.kooky.feature.recipe.add
+package com.kooky.feature.add
 
 import kotlinx.serialization.Serializable
 import javax.inject.Inject
