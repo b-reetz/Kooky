@@ -6,11 +6,11 @@ object Versions {
     const val versionCode = 0
 
     //compose
-    const val compose = "1.1.0-rc01"
+    const val compose = "1.1.0"
     const val composeActivity = "1.4.0"
-    const val composeViewModel = "2.4.0"
+    const val composeViewModel = "2.4.1"
 
-    const val kotlin = "1.6.0" //1.6.10
+    const val kotlin = "1.6.10"
     const val hilt = "2.40.1"
 
     const val kotlinCoroutines = "1.6.0"
@@ -18,9 +18,9 @@ object Versions {
     const val kotlinxSerialization = "1.3.2"
 
     const val appCompat = "1.4.1"
-    const val material = "1.4.0"
+    const val material = "1.5.0"
 
-    const val accompanist = "0.22.0-rc"
+    const val accompanist = "0.23.0"
 
     const val coreKtx = "1.7.0"
 
