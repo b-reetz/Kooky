@@ -81,7 +81,6 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
 
         implementation("androidx.core:core-ktx:${Versions.coreKtx}")
         implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
-        implementation("com.google.android.material:material:${Versions.material}")
     }
 }
 

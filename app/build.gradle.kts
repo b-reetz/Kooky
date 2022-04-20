@@ -56,8 +56,8 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":navigation"))
 
-    implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
+    implementation("androidx.core:core-ktx:${Versions.coreKtx}")
+    implementation("androidx.activity:activity-compose:${Versions.composeActivity}")
     implementation("com.google.accompanist:accompanist-insets:${Versions.accompanist}")
 }

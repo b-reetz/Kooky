@@ -14,8 +14,8 @@ import com.kooky.navigation.RecipeListKey
 import com.kooky.navigation.toolbarActions
 import com.kooky.navigation.toolbarTitle
 import dagger.hilt.android.AndroidEntryPoint
-import dev.enro.core.EmptyBehavior
 import dev.enro.core.NavigationInstruction
+import dev.enro.core.compose.EmptyBehavior
 import dev.enro.core.compose.EnroContainer
 import dev.enro.core.compose.rememberEnroContainerController
 
@@ -43,7 +43,7 @@ fun MainContent() {
             )
         }) {
             val controller = rememberEnroContainerController(
-                initialBackstack = listOf(NavigationInstruction.Forward(RecipeListKey())),
+                initialState = listOf(NavigationInstruction.Forward(RecipeListKey())),
                 emptyBehavior = EmptyBehavior.CloseParent
             )
             EnroContainer(controller = controller)
