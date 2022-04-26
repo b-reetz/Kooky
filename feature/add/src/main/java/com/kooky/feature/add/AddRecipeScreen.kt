@@ -28,38 +28,32 @@ import dev.enro.annotations.NavigationDestination
 fun RecipeAddScreen() {
     val viewModel: AddRecipeViewModel = viewModel()
 
-//    LocalToolbar.current.value = ToolbarProps("Add Recipe") {
-//        TextButton(onClick = { /*TODO*/ }) {
-//            Text("Save", color = Color.White)
-//        }
-//    }
+    MaterialTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            //TODO make these backed by viewModel
+            var first by remember { mutableStateOf("") }
+            var second by remember { mutableStateOf("") }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        //TODO make these backed by viewModel
-        var first by remember { mutableStateOf("") }
-        var second by remember { mutableStateOf("") }
+            RecipeComponentCard(title = "Ingredients", onClick = viewModel::onIngredientsSelected)
+            RecipeComponentCard(title = "Directions", onClick = { })
 
-        RecipeComponentCard(title = "Ingredients", onClick = viewModel::onIngredientsSelected)
-        RecipeComponentCard(title = "Directions", onClick = { })
-
-        TextField(
-            value = first,
-            onValueChange = { first = it },
-            placeholder = { Text("Recipe name placeholder") },
-            label = { Text("Recipe name label") })
-        OutlinedTextField(
-            value = second,
-            onValueChange = { second = it },
-            label = { Text("Recipe name label") },
-            placeholder = { Text("Recipe name placeholder") })
-
-        
+            TextField(
+                value = first,
+                onValueChange = { first = it },
+                placeholder = { Text("Recipe name placeholder") },
+                label = { Text("Recipe name label") })
+            OutlinedTextField(
+                value = second,
+                onValueChange = { second = it },
+                label = { Text("Recipe name label") },
+                placeholder = { Text("Recipe name placeholder") })
+        }
     }
 }
 
