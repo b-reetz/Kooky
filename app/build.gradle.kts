@@ -56,6 +56,7 @@ dependencies {
     implementation(project(":feature:shoppinglist"))
     implementation(project(":data"))
     implementation(project(":navigation"))
+    implementation(project(":utilities"))
 
     implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
     implementation("androidx.core:core-ktx:${Versions.coreKtx}")

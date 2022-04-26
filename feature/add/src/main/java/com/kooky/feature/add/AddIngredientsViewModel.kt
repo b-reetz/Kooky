@@ -1,12 +1,12 @@
 package com.kooky.feature.add
 
 import android.os.Parcelable
-import androidx.annotation.PluralsRes
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import com.kooky.utilities.doIf
 import com.kooky.viewmodel.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.enro.annotations.ExperimentalComposableDestination
@@ -60,7 +60,12 @@ class AddIngredientsViewModel @Inject constructor(): StateViewModel<AddMyIngredi
 
     override val config = configure(
         initialState = AddMyIngredientsState(
-            ingredients = nav.key.ingredients.ifEmpty { listOf(IngredientsTest()) }
+            ingredients = nav.key.ingredients
+                .doIf(
+                    predicate = { lastOrNull()?.isEmpty == false },
+                    block = { plus(IngredientsTest()) }
+                )
+                .ifEmpty { listOf(IngredientsTest()) }
         )
     )
 
@@ -86,7 +91,7 @@ class AddIngredientsViewModel @Inject constructor(): StateViewModel<AddMyIngredi
         updateState { copy(ingredients = newList) }
     }
 
-    fun save() {
+    fun onSaveClicked() {
         nav.closeWithResult(state.ingredients.withoutEmpty())
     }
 }

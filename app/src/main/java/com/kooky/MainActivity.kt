@@ -5,24 +5,13 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.key
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.zIndex
-import androidx.core.view.WindowCompat
 import com.google.accompanist.insets.ProvideWindowInsets
-import com.kooky.navigation.RecipeListKey
-import com.kooky.navigation.ShoppingListKey
-import com.kooky.navigation.toolbarActions
-import com.kooky.navigation.toolbarTitle
+import com.kooky.navigation.*
 import dagger.hilt.android.AndroidEntryPoint
 import dev.enro.core.NavigationInstruction
 import dev.enro.core.compose.*
@@ -46,12 +35,13 @@ fun MainContent() {
 
     val homeController = rememberEnroContainerController(
         initialState = listOf(NavigationInstruction.Forward(RecipeListKey())),
-        emptyBehavior = EmptyBehavior.CloseParent
+        emptyBehavior = EmptyBehavior.CloseParent,
+        accept = { it is RecipeListKey }
     )
 
     val shoppingListController = rememberEnroContainerController(
         accept = { false },
-        initialState = listOf(NavigationInstruction.Replace(ShoppingListKey())),
+        initialState = listOf(NavigationInstruction.Forward(ShoppingListKey())),
         emptyBehavior = EmptyBehavior.Action {
             composableManager.setActiveContainer(homeController)
             true

@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.kooky.navigation.LocalToolbar
+import com.kooky.navigation.KookyAppBar
 import com.kooky.navigation.ToolbarProps
 import com.kooky.utilities.maxSize
 import com.kooky.utilities.maxWidth
@@ -41,6 +41,8 @@ import dev.enro.annotations.NavigationDestination
 import dev.enro.core.NavigationKey
 import kotlinx.parcelize.Parcelize
 
+private val LocalToolbar = compositionLocalOf { mutableStateOf(ToolbarProps("Kooky")) }
+
 @Parcelize
 class NewIngredientAddKey(val ingredients: List<IngredientsTest>) : NavigationKey.WithResult<List<IngredientsTest>>
 
@@ -48,7 +50,9 @@ class NewIngredientAddKey(val ingredients: List<IngredientsTest>) : NavigationKe
 @ExperimentalComposableDestination
 @NavigationDestination(NewIngredientAddKey::class)
 fun AddIngredientsScreen() {
-    Scaffold {
+    Scaffold(
+        topBar = { KookyAppBar(LocalToolbar) }
+    ) {
         Column(
             modifier = maxSize.padding(vertical = 16.dp),
             verticalArrangement = spacedBy(16.dp)
@@ -83,7 +87,7 @@ private fun IngredientsList() {
     val state by viewModel.stateFlow.collectAsState()
 
     LocalToolbar.current.value = ToolbarProps("Add Ingredients") {
-        TextButton(onClick = viewModel::save) {
+        TextButton(onClick = viewModel::onSaveClicked) {
             Text("Save", color = Color.White)
         }
     }

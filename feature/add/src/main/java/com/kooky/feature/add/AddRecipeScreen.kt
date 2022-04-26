@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.kooky.navigation.LocalToolbar
 import com.kooky.navigation.RecipeAddKey
 import com.kooky.navigation.ToolbarProps
 import dev.enro.annotations.ExperimentalComposableDestination
@@ -29,11 +28,11 @@ import dev.enro.annotations.NavigationDestination
 fun RecipeAddScreen() {
     val viewModel: AddRecipeViewModel = viewModel()
 
-    LocalToolbar.current.value = ToolbarProps("Add Recipe") {
-        TextButton(onClick = { /*TODO*/ }) {
-            Text("Save", color = Color.White)
-        }
-    }
+//    LocalToolbar.current.value = ToolbarProps("Add Recipe") {
+//        TextButton(onClick = { /*TODO*/ }) {
+//            Text("Save", color = Color.White)
+//        }
+//    }
 
     Column(
         modifier = Modifier
