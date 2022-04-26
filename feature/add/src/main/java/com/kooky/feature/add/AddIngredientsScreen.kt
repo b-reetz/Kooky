@@ -36,7 +36,6 @@ import com.kooky.navigation.LocalToolbar
 import com.kooky.navigation.ToolbarProps
 import com.kooky.utilities.maxSize
 import com.kooky.utilities.maxWidth
-import com.kooky.utilities.pluralResource
 import dev.enro.annotations.ExperimentalComposableDestination
 import dev.enro.annotations.NavigationDestination
 import dev.enro.core.NavigationKey

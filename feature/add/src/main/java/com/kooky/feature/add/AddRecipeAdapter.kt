@@ -8,7 +8,7 @@ import it.skrape.selects.html5.script
 import kotlinx.serialization.json.*
 import javax.inject.Inject
 
-class RecipeAdapter @Inject constructor() {
+class AddRecipeAdapter @Inject constructor() {
 
     private val json = Json { ignoreUnknownKeys = true }
 

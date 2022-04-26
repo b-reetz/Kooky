@@ -3,7 +3,7 @@ package com.kooky.feature.add
 import kotlinx.serialization.Serializable
 import javax.inject.Inject
 
-class RecipeRepository @Inject constructor(private val adapter: RecipeAdapter) {
+class RecipeRepository @Inject constructor(private val adapter: AddRecipeAdapter) {
     suspend fun scrapeFromUrl(): RecipeSchema {
         return adapter.scrapePage("http://cookieandkate.com/vegan-sour-cream-recipe")
     }
