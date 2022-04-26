@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/add" />
             <option value="$PROJECT_DIR$/feature/recipe" />
+            <option value="$PROJECT_DIR$/feature/shoppinglist" />
             <option value="$PROJECT_DIR$/infrastructure" />
             <option value="$PROJECT_DIR$/infrastructure/viewmodel" />
             <option value="$PROJECT_DIR$/navigation" />

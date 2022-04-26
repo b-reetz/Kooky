@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kooky.navigation.LocalToolbar
 import com.kooky.navigation.RecipeAddKey
 import com.kooky.navigation.ToolbarProps
@@ -28,7 +29,7 @@ import dev.enro.core.forward
 @ExperimentalComposableDestination
 @NavigationDestination(RecipeAddKey::class)
 fun RecipeAddScreen() {
-    val navigation = navigationHandle()
+    val viewModel: AddRecipeViewModel = viewModel()
 
     LocalToolbar.current.value = ToolbarProps("Add Recipe") {
         TextButton(onClick = { /*TODO*/ }) {
@@ -47,7 +48,7 @@ fun RecipeAddScreen() {
         var first by remember { mutableStateOf("") }
         var second by remember { mutableStateOf("") }
 
-        RecipeComponentCard(title = "Ingredients", onClick = { navigation.forward(NewIngredientAddKey()) })
+        RecipeComponentCard(title = "Ingredients", onClick = viewModel::onIngredientsSelected)
         RecipeComponentCard(title = "Directions", onClick = { })
 
         TextField(

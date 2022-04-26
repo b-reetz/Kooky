@@ -1,13 +1,14 @@
 @file:OptIn(
-    ExperimentalAnimationApi::class,
     ExperimentalFoundationApi::class,
     ExperimentalMaterialApi::class
 )
 
 package com.kooky.feature.add
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,15 +32,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kooky.navigation.LocalToolbar
+import com.kooky.navigation.ToolbarProps
 import com.kooky.utilities.maxSize
 import com.kooky.utilities.maxWidth
+import com.kooky.utilities.pluralResource
 import dev.enro.annotations.ExperimentalComposableDestination
 import dev.enro.annotations.NavigationDestination
 import dev.enro.core.NavigationKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class NewIngredientAddKey : NavigationKey
+class NewIngredientAddKey(val ingredients: List<IngredientsTest>) : NavigationKey.WithResult<List<IngredientsTest>>
 
 @Composable
 @ExperimentalComposableDestination
@@ -62,9 +66,15 @@ private fun IngredientTitles() {
         modifier = maxWidth.padding(horizontal = 16.dp),
         horizontalArrangement = spacedBy(8.dp)
     ) {
-        Text("Ingredient", modifier = Modifier.weight(2f))
-        Text("Qty", modifier = Modifier.weight(1f))
-        Text("Unit", modifier = Modifier.weight(1f))
+        Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+            Text("Quantity")
+        }
+        Box(modifier = Modifier.weight(1f), contentAlignment = Alignment.Center) {
+            Text("Unit")
+        }
+        Box(modifier = Modifier.weight(2f), contentAlignment = Alignment.Center) {
+            Text("Ingredient")
+        }
     }
 }
 
@@ -73,6 +83,12 @@ private fun IngredientsList() {
     val viewModel: AddIngredientsViewModel = viewModel()
     val state by viewModel.stateFlow.collectAsState()
 
+    LocalToolbar.current.value = ToolbarProps("Add Ingredients") {
+        TextButton(onClick = viewModel::save) {
+            Text("Save", color = Color.White)
+        }
+    }
+
     LazyColumn(modifier = maxWidth) {
         items(state.ingredients, key = { it.id }) {
             SwipeableIngredientRow(
@@ -80,7 +96,7 @@ private fun IngredientsList() {
                 onDismiss = { viewModel.onIngredientDismissed(it) },
                 onChange = viewModel::onIngredientUpdated,
                 modifier = Modifier.animateItemPlacement(),
-                enabled = state.ingredients.size > 1
+                enabled = state.ingredients.last() != it
             )
         }
     }
@@ -146,8 +162,6 @@ private fun IngredientRow(
     ingredient: IngredientsTest,
     onUpdated: (IngredientsTest) -> Unit,
 ) {
-    val (name, quantity, measure) = ingredient.getFields()
-
     Box(modifier = Modifier.background(Color.White)) {
         Row(
             modifier = maxWidth.padding(horizontal = 16.dp, vertical = 8.dp),
@@ -155,16 +169,24 @@ private fun IngredientRow(
             verticalAlignment = Alignment.CenterVertically
         ) {
             OutlinedTextField(
-                value = name.orEmpty(),
-                onValueChange = { onUpdated(ingredient.copy(name = it)) },
-                modifier = Modifier.weight(2f)
-            )
-            OutlinedTextField(
-                value = quantity.orEmpty(),
+                value = ingredient.quantity.orEmpty(),
                 onValueChange = { onUpdated(ingredient.copy(quantity = it)) },
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
+                singleLine = true,
+                textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Center)
             )
-            MeasureSelector(measure, Modifier.weight(1f)) { onUpdated(ingredient.copy(measure = it)) }
+            MeasureSelector(
+                currentMeasure = ingredient.measure,
+                modifier = Modifier.weight(1f),
+            ) {
+                onUpdated(ingredient.copy(measure = it))
+            }
+            OutlinedTextField(
+                value = ingredient.name.orEmpty(),
+                onValueChange = { onUpdated(ingredient.copy(name = it)) },
+                modifier = Modifier.weight(2f),
+                singleLine = true
+            )
         }
     }
 }
@@ -175,35 +197,36 @@ fun MeasureSelector(
     modifier: Modifier = Modifier,
     onUpdated: (Measure) -> Unit
 ) {
+    //TODO make this auto-complete field
     var isExpanded by remember { mutableStateOf(false) }
     Surface(
-        shape = RoundedCornerShape(8.dp),
-        color = Color.LightGray,
+        shape = RoundedCornerShape(percent = 50),
+        color = Color.LightGray.copy(alpha = 0.5f),
         modifier = modifier.clickable { isExpanded = true }
     ) {
         Text(
-            text = currentMeasure.displayName,
+            text = currentMeasure.abbreviation,
             overflow = TextOverflow.Ellipsis,
             textAlign = TextAlign.Center,
             maxLines = 1,
-            modifier = Modifier.padding(2.dp)
+            modifier = Modifier.padding(vertical = 8.dp)
         )
         DropdownMenu(expanded = isExpanded, onDismissRequest = { isExpanded = false }) {
             Column {
+
                 Measure.values().forEach {
                     Box(modifier = Modifier
                         .fillMaxWidth()
+                        .padding(8.dp)
                         .clickable {
                             isExpanded = false
                             onUpdated(it)
                         }
                     ) {
-                        Text(it.displayName, modifier = Modifier.padding(8.dp))
+                        Text(it.displayName)
                     }
                 }
             }
         }
     }
 }
-
-fun String?.isNotNullOrBlank(): Boolean = this != null && this.isNotBlank()

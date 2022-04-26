@@ -1,16 +1,18 @@
 package com.kooky.feature.add
 
+import android.os.Parcelable
+import androidx.annotation.PluralsRes
 import androidx.compose.material.AlertDialog
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
-import com.kooky.infrastructure.viewmodel.StateViewModel
+import com.kooky.viewmodel.StateViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.enro.annotations.ExperimentalComposableDestination
 import dev.enro.annotations.NavigationDestination
-import dev.enro.core.NavigationHandle
 import dev.enro.core.NavigationKey
+import dev.enro.core.TypedNavigationHandle
 import dev.enro.core.close
 import dev.enro.core.compose.dialog.DialogDestination
 import dev.enro.core.compose.navigationHandle
@@ -22,36 +24,45 @@ import java.util.*
 import javax.inject.Inject
 
 enum class Measure(val abbreviation: String, val displayName: String) {
+    NONE("-", "-"),
     CUP("c", "cup"),
     TEASPOON("tsp", "teaspoon"),
     TABLESPOON("Tbsp", "tablespoon"),
     PINCH("pinch", "pinch")
 }
 
+@Parcelize
 data class IngredientsTest(
     val name: String? = null,
     val quantity: String? = null,
-    val measure: Measure = Measure.CUP,
+    val measure: Measure = Measure.NONE,
     val id: String = UUID.randomUUID().toString()
-) {
-    fun getFields() = Triple(name, quantity, measure)
+) : Parcelable {
+    val isEmpty: Boolean
+        get() = name.isNullOrBlank() && quantity.isNullOrBlank() && measure == Measure.NONE
 }
 
 data class AddMyIngredientsState(
     val ingredients: List<IngredientsTest> = listOf(IngredientsTest())
 )
 
-@HiltViewModel
-class AddIngredientsViewModel @Inject constructor() :
-    StateViewModel<AddMyIngredientsState>(AddMyIngredientsState()) {
+fun List<IngredientsTest>.withoutEmpty() = filterNot { it.isEmpty }
 
-    private val nav: NavigationHandle by navigationHandle<NewIngredientAddKey> {
+@HiltViewModel
+class AddIngredientsViewModel @Inject constructor(): StateViewModel<AddMyIngredientsState>() {
+    private val nav: TypedNavigationHandle<NewIngredientAddKey> by navigationHandle {
         onCloseRequested {
-            if (state.ingredients.isNotEmpty()) {
-                confirmationDialog.open(confirmationDialogKey)
-            } else close()
+            val hasChanged = state.ingredients.withoutEmpty() != nav.key.ingredients
+
+            if (hasChanged) confirmationDialog.open(confirmationDialogKey) else close()
         }
     }
+
+    override val config = configure(
+        initialState = AddMyIngredientsState(
+            ingredients = nav.key.ingredients.ifEmpty { listOf(IngredientsTest()) }
+        )
+    )
 
     private val confirmationDialogKey = ConfirmationDialogKey(
         title = "You have unsaved ingredients",
@@ -65,9 +76,7 @@ class AddIngredientsViewModel @Inject constructor() :
     fun onIngredientUpdated(ingredient: IngredientsTest) {
         val indexOfExisting = state.ingredients.indexOfFirst { it.id == ingredient.id }
         val newList = state.ingredients.toMutableList().apply { set(indexOfExisting, ingredient) }
-        if (newList.last().quantity != null && newList.last().name.isNotNullOrBlank()) newList.add(
-            IngredientsTest()
-        )
+        if (!newList.last().isEmpty) newList.add(IngredientsTest())
         updateState { copy(ingredients = newList) }
     }
 
@@ -75,6 +84,10 @@ class AddIngredientsViewModel @Inject constructor() :
         val indexOfExisting = state.ingredients.indexOfFirst { it.id == ingredient.id }
         val newList = state.ingredients.toMutableList().apply { removeAt(indexOfExisting) }
         updateState { copy(ingredients = newList) }
+    }
+
+    fun save() {
+        nav.closeWithResult(state.ingredients.withoutEmpty())
     }
 }
 

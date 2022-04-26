@@ -32,7 +32,11 @@ fun RecipeListScreen() { //wrap in scaffold with top app bar
     val navigation = navigationHandle()
 
     LocalToolbar.current.value = ToolbarProps("Recipe List") {
-        IconButton(onClick = { dropdownVisible = true }) {
+        IconButton(
+            onClick = {
+                navigation.forward(RecipeAddKey())
+            }
+        ) {
             Icon(Icons.Default.Add, null)
         }
 

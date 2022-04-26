@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="cups">
+        <item quantity="one">cup</item>
+        <item quantity="other">cups</item>
+    </plurals>
+    <plurals name="teaspoons">
+        <item quantity="one">teaspoon</item>
+        <item quantity="other">teaspoons</item>
+    </plurals>
+    <plurals name="tablespoons">
+        <item quantity="one">tablespoon</item>
+        <item quantity="other">tablespoons</item>
+    </plurals>
+    <plurals name="pinches">
+        <item quantity="one">pinch</item>
+        <item quantity="other">pinches</item>
+    </plurals>
+    <plurals name="none">
+        <item quantity="zero">-</item>
+    </plurals>
+</resources>

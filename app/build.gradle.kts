@@ -53,6 +53,7 @@ dependencies {
 
     implementation(project(":feature:recipe"))
     implementation(project(":feature:add"))
+    implementation(project(":feature:shoppinglist"))
     implementation(project(":data"))
     implementation(project(":navigation"))
 
