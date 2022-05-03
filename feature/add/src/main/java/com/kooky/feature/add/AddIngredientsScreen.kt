@@ -44,11 +44,11 @@ import kotlinx.parcelize.Parcelize
 private val LocalToolbar = compositionLocalOf { mutableStateOf(ToolbarProps("Kooky")) }
 
 @Parcelize
-class NewIngredientAddKey(val ingredients: List<IngredientsTest>) : NavigationKey.WithResult<List<IngredientsTest>>
+class AddIngredientsKey(val ingredients: List<IngredientsTest>) : NavigationKey.WithResult<List<IngredientsTest>>
 
 @Composable
 @ExperimentalComposableDestination
-@NavigationDestination(NewIngredientAddKey::class)
+@NavigationDestination(AddIngredientsKey::class)
 fun AddIngredientsScreen() {
     Scaffold(
         topBar = { KookyAppBar(LocalToolbar) }

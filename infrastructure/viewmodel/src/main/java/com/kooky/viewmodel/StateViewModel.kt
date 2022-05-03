@@ -9,7 +9,7 @@ abstract class StateViewModel<State : Any> : ViewModel() {
     protected fun configure(
         initialState: State,
         savedStateBehavior: SavedStateBehavior<State> = doNotSaveState()
-    ): StateViewModelConfig<State> = StateViewModelConfig<State>(
+    ): StateViewModelConfig<State> = StateViewModelConfig(
         initialState = initialState,
         savedStateBehavior = savedStateBehavior
     )

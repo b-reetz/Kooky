@@ -7,7 +7,8 @@ import dev.enro.viewmodel.navigationHandle
 import javax.inject.Inject
 
 data class AddRecipeState(
-    val ingredients: List<IngredientsTest> = emptyList()
+    val ingredients: List<IngredientsTest> = emptyList(),
+    val description: List<String> = emptyList()
 )
 
 class AddRecipeViewModel @Inject constructor(): StateViewModel<AddRecipeState>() {
@@ -19,7 +20,15 @@ class AddRecipeViewModel @Inject constructor(): StateViewModel<AddRecipeState>()
         updateState { copy(ingredients = it) }
     }
 
+    private val editDescription by registerForNavigationResult<List<String>>(navigation) {
+        updateState { copy(description = it) }
+    }
+
     fun onIngredientsSelected() {
-        editIngredients.open(NewIngredientAddKey(state.ingredients))
+        editIngredients.open(AddIngredientsKey(state.ingredients))
+    }
+
+    fun onDescriptionSelected() {
+        editDescription.open(AddDescriptionKey(state.description))
     }
 }

@@ -50,7 +50,7 @@ fun List<IngredientsTest>.withoutEmpty() = filterNot { it.isEmpty }
 
 @HiltViewModel
 class AddIngredientsViewModel @Inject constructor(): StateViewModel<AddMyIngredientsState>() {
-    private val nav: TypedNavigationHandle<NewIngredientAddKey> by navigationHandle {
+    private val nav: TypedNavigationHandle<AddIngredientsKey> by navigationHandle {
         onCloseRequested {
             val hasChanged = state.ingredients.withoutEmpty() != nav.key.ingredients
 

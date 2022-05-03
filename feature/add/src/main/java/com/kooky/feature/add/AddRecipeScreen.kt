@@ -41,7 +41,7 @@ fun RecipeAddScreen() {
             var second by remember { mutableStateOf("") }
 
             RecipeComponentCard(title = "Ingredients", onClick = viewModel::onIngredientsSelected)
-            RecipeComponentCard(title = "Directions", onClick = { })
+            RecipeComponentCard(title = "Directions", onClick = viewModel::onDescriptionSelected)
 
             TextField(
                 value = first,
