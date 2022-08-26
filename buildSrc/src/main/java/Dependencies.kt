@@ -42,7 +42,6 @@ fun DependencyHandler.compose() {
     implementation("androidx.compose.animation:animation:${Versions.compose}")
     implementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
     implementation("androidx.activity:activity-compose:${Versions.composeActivity}")
-    implementation("androidx.navigation:navigation-compose:2.4.0-alpha07")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}")
 }

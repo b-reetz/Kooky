@@ -34,7 +34,7 @@ object Versions {
     const val sqlDelight = "1.5.3"
 
     //enro
-    const val enro = "1.9.0"
+    const val enro = "1.15.0"
 
     //test
     const val testCore = "1.4.0"
