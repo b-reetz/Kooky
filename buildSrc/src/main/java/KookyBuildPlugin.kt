@@ -38,8 +38,8 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
         apply("org.jetbrains.kotlin.android")
         apply("kotlin-android")
         apply("kotlin-parcelize")
+        apply("dagger.hilt.android.plugin")
         apply("kotlin-kapt")
-        apply("kotlinx-serialization")
 
         if (extension.useSqlDelight) apply("com.squareup.sqldelight")
     }
@@ -78,6 +78,7 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
         if (extension.useSqlDelight) sqlDelight()
 
         timber()
+        hilt()
 
         implementation("androidx.core:core-ktx:${Versions.coreKtx}")
         implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
