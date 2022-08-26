@@ -6,12 +6,12 @@ object Versions {
     const val versionCode = 0
 
     //compose
-    const val compose = "1.1.1"
+    const val compose = "1.2.0"
     const val composeActivity = "1.4.0"
     const val composeViewModel = "2.4.1"
 
     const val kotlin = "1.6.10"
-    const val hilt = "2.40.2"
+    const val hilt = "2.43.2"
 
     const val kotlinCoroutines = "1.6.1"
 
@@ -34,7 +34,7 @@ object Versions {
     const val sqlDelight = "1.5.3"
 
     //enro
-    const val enro = "1.15.0"
+    const val enro = "1.17.2"
 
     //test
     const val testCore = "1.4.0"
