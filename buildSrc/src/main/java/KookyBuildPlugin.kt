@@ -35,7 +35,6 @@ fun Project.kooky(configure: Action<KookyBuildExtension> = Action { }) {
 
     plugins.apply {
         apply("com.android.library")
-        apply("org.jetbrains.kotlin.android")
         apply("kotlin-android")
         apply("kotlin-parcelize")
         apply("dagger.hilt.android.plugin")

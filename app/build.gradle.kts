@@ -2,7 +2,7 @@ import com.kooky.buildextensions.implementation
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("kotlin-android")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")

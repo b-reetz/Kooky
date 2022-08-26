@@ -11,7 +11,7 @@ object Versions {
     const val composeViewModel = "2.4.1"
 
     const val kotlin = "1.6.10"
-    const val hilt = "2.40.1"
+    const val hilt = "2.40.2"
 
     const val kotlinCoroutines = "1.6.1"
 

@@ -31,7 +31,7 @@ fun DependencyHandler.retrofit() {
 //  id("kotlin-kapt")
 fun DependencyHandlerScope.hilt() {
     implementation("com.google.dagger:hilt-android:${Versions.hilt}")
-    kapt("com.google.dagger:hilt-compiler:${Versions.hilt}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.hilt}")
 }
 
 fun DependencyHandler.compose() {
